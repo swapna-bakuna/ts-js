@@ -1,0 +1,68 @@
+
+<div class="w-100 mb-3 bg-light" style="height: 100vh;">
+    <div class="w-100  d-flex justify-content-center align-items-center bg-white h-100">
+        <div *ngIf="token == null; then login else sucess">
+    
+        </div>
+        <div>
+            <ng-template class="d-flex flex-column" #login>
+    
+                <form [formGroup]="loginForm" class="d-flex flex-column border border-3 p-5 rounded "
+                    (ngSubmit)="loginSubmit(loginForm)">
+                    <div class="">
+                        <h1 class="">Hello User........</h1>
+                        <p>Please Login</p>
+                    </div>
+                    <div *ngIf="error">
+                        <p style="color: red;">
+                            credentials missmatch...
+                        </p>
+                    </div>
+                    <div class="example-container w-100">
+                        <mat-form-field appearance="fill" color="accent" class="w-100">
+                            <mat-label>Enter your email</mat-label>
+                            <input matInput placeholder="pat@example.com" formControlName="email" required>
+                            <mat-error *ngIf="email?.invalid">{{getErrorMessage()}}</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="example-container w-100">
+                        <mat-form-field appearance="fill" color="accent">
+                            <mat-label>password</mat-label>
+                            <input matInput formControlName="password" [type]=" hide ? 'password' : 'text'" required>
+                            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+                                [attr.aria-pressed]="hide">
+                                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+                            </button>
+                            <mat-error>password required</mat-error>
+                        </mat-form-field>
+                    </div>
+                    <div class="text-center m-5">
+                        <button mat-stroked-button color="accent" type="submit">Login</button>
+                    </div>
+                </form>
+            </ng-template>
+            <ng-template #sucess>
+                <div>
+                    <h1>
+                        Login Successful
+                    </h1>
+                </div>
+            </ng-template>
+        </div>
+    </div>
+    <div class="d-flex justify-content-center">
+        <div class="w-75">
+            <mat-accordion>
+                <mat-expansion-panel>
+                    <mat-expansion-panel-header>
+                        <mat-panel-title>
+                            Valid email and password
+                        </mat-panel-title>
+                    </mat-expansion-panel-header>
+                    <p>Email : eve.holt@reqres.in</p>
+                    <p>Password : Mani@$#@!</p>
+                </mat-expansion-panel>
+            </mat-accordion>
+        </div>
+    </div>
+</div>
